@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 class BankAccount {
-    int balance;
-    int prevTransaction;
+    int bal;
+    int prevTrans;
     String customerName;
     String customerId;
     int flag = 0;
@@ -35,7 +35,7 @@ class BankAccount {
         clrscr();
         System.out.println("Welcome " + customerName);
         System.out.println();
-        System.out.print("Please enter the Customer ID or PIN: ");
+        System.out.print("Please enter the PIN: ");
         Scanner id = new Scanner(System.in);
         String chk = id.nextLine();
         if (chk.equals(customerId)) {
@@ -53,17 +53,17 @@ class BankAccount {
         }
     }
 
-    void deposit(int amount) {
-        if (amount != 0) {
-            balance = balance + amount;
-            prevTransaction = amount;
+    void deposit(int amt) {
+        if (amt != 0) {
+            bal = bal + amt;
+            prevTrans = amt;
         }
     }
 
-    void withdraw(int amount) {
-        if (this.balance > amount) {
-            balance = balance - amount;
-            prevTransaction = -amount;
+    void withdraw(int amt) {
+        if (this.bal > amt) {
+            bal = bal - amt;
+            prevTrans = -amt;
         } else {
             clrscr();
             System.out.println("---------------------------------");
@@ -72,27 +72,27 @@ class BankAccount {
         }
     }
 
-    void getPrevTransaction() {
-        if (prevTransaction > 0) {
-            System.out.println("Deposited: " + prevTransaction);
-        } else if (prevTransaction < 0) {
-            System.out.println("Withdraw: " + Math.abs(prevTransaction));
+    void getPrevTrans() {
+        if (prevTrans > 0) {
+            System.out.println("Deposited: " + prevTrans);
+        } else if (prevTrans < 0) {
+            System.out.println("Withdraw: " + Math.abs(prevTrans));
         } else {
             System.out.println("No Transaction Occured ");
         }
     }
 
-    public void transfer(double amount, BankAccount acc) {
-        if (this.balance < amount) {
+    public void transfer(double amt, BankAccount acc) {
+        if (this.bal < amt) {
             clrscr();
             System.out.println("---------------------------------");
             System.out.println("Transfer Fails due to insufficient balance!");
             System.out.println("---------------------------------");
         } else {
-            this.balance -= amount;
-            acc.balance += amount;
-            System.out.println("Account of " + this.customerName + " becomes $" + this.balance);
-            System.out.println("Account of " + acc.customerName + " becomes $" + acc.balance);
+            this.bal -= amt;
+            acc.bal += amt;
+            System.out.println("Account of " + this.customerName + " becomes $" + this.bal);
+            System.out.println("Account of " + acc.customerName + " becomes $" + acc.bal);
             System.out.println("\n");
         }
     }
@@ -123,7 +123,7 @@ class BankAccount {
                 case 'A':
                     clrscr();
                     System.out.println("================");
-                    System.out.println("Balance " + balance);
+                    System.out.println("Balance " + bal);
                     System.out.println("================");
                     System.out.println("\n");
                     break;
@@ -151,7 +151,7 @@ class BankAccount {
                 case 'D':
                     clrscr();
                     System.out.println("================");
-                    getPrevTransaction();
+                    getPrevTrans();
                     System.out.println("================");
                     System.out.println("\n");
                     break;
@@ -160,7 +160,7 @@ class BankAccount {
                     clrscr();
                     System.out.println("***************");
                     System.out.println("To whom");
-                    BankAccount bb = new BankAccount("RANI", "2504");
+                    BankAccount bb = new BankAccount("RAMA", "2365");
                     System.out.println(bb.customerName);
                     System.out.println("***************");
                     System.out.println("Amount to Transfer");
@@ -187,7 +187,7 @@ class BankAccount {
 
 public class ATMinterface {
     public static void main(String[] args) {
-        BankAccount ba = new BankAccount("SPANDANA", "1308");
+        BankAccount ba = new BankAccount("PRANAVI", "1764");
         ba.checkId();
     }
 
